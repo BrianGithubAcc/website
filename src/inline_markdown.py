@@ -228,12 +228,12 @@ def generate_page(from_path, template_path, dest_path, basepath):
     html = markdown_to_html_node(markdown).to_html()
     title = extract_title(markdown)
 
-    page = (
-        template.replace("{{ Title }}", title)
-        .replace("{{ Content }}", html)
-        .replace('href="/', f'href="{basepath}')
-        .replace('src="/', f'src="{basepath}')
-    )
+    page = template.replace("{{ Title }}", title).replace("{{ Content }}", html)
+
+    # FIX: apply basepath correctly
+    page = page.replace('href="/', f'href="{basepath}')
+    page = page.replace('src="/', f'src="{basepath}')
+
     os.makedirs(os.path.dirname(dest_path), exist_ok=True)
 
     with open(dest_path, "w", encoding="utf-8") as f:

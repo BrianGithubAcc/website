@@ -42,7 +42,7 @@ def copy_static(src, dst):
 def main():
     basepath = sys.argv[1] if len(sys.argv) > 1 else "/"
     if basepath != "/" and not basepath.endswith("/"):
-    basepath += "/"
+        basepath += "/"
 
     copy_static("static", "docs")
     # generate_page("content/index.md", "template.html", "public/index.html")
